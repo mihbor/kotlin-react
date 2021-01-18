@@ -1,10 +1,7 @@
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
 import styled.css
 import styled.styledDiv
 import styled.styledInput
@@ -20,57 +17,47 @@ external interface InputProps : RProps {
   var onClick: (String) -> Unit
 }
 
-@JsExport
-class UserInput(props: InputProps): RComponent<InputProps, RState>(props) {
-
-  override fun RBuilder.render() {
-    styledInput {
-      css {
-        +WelcomeStyles.textInput
-      }
-      attrs {
-        type = InputType.text
-        value = props.name
-        onChangeFunction = { event -> props.onClick((event.target as HTMLInputElement).value) }
-      }
+val userInput = functionalComponent<InputProps> { props ->
+  styledInput {
+    css {
+      +WelcomeStyles.textInput
+    }
+    attrs {
+      type = InputType.text
+      value = props.name
+      onChangeFunction = { event -> props.onClick((event.target as HTMLInputElement).value) }
     }
   }
 }
 
-@JsExport
-class UserOutput(props: WelcomeProps): RComponent<WelcomeProps, RState>(props) {
+fun RBuilder.userInput(handler: InputProps.() -> Unit) = child(userInput) {
+  attrs {
+    handler()
+  }
+}
 
-  override fun RBuilder.render() {
-    styledDiv {
-      css {
-        +WelcomeStyles.textContainer
-      }
-      +"Hello, ${props.name}"
+val userOutput = functionalComponent<WelcomeProps> { props ->
+  styledDiv {
+    css {
+      +WelcomeStyles.textContainer
     }
+    +"Hello, ${props.name}"
   }
 }
 
 @JsExport
-class Welcome(props: WelcomeProps) : RComponent<WelcomeProps, WelcomeState>(props) {
+val welcome = functionalComponent<WelcomeProps> { props ->
 
-  init {
-    state = WelcomeState(props.name)
+  val (state, setState) = useState(props.name)
+
+  child(userOutput) {
+    attrs.name = state
   }
-
-  override fun RBuilder.render() {
-    child(UserOutput::class) {
-      attrs.name = state.name
-    }
-    child(UserInput::class) {
-      attrs.name = state.name
-      attrs.onClick = {
-        setState(
-          WelcomeState(name = it)
-        )
-      }
-    }
-    child(UserOutput::class) {
-      attrs.name = state.name
-    }
+  userInput {
+    name = state
+    onClick = setState
+  }
+  child(userOutput) {
+    attrs.name = state
   }
 }
