@@ -1,23 +1,24 @@
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
+import kotlinx.html.js.onClickFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
+import react.dom.div
+import react.dom.span
 import styled.css
 import styled.styledDiv
 import styled.styledInput
 
-external interface WelcomeProps : RProps {
+external interface NameProps : RProps {
   var name: String
 }
 
-data class WelcomeState(val name: String) : RState
-
-external interface InputProps : RProps {
+external interface EditableNameProps : RProps {
   var name: String
-  var onClick: (String) -> Unit
+  var setName: (String) -> Unit
 }
 
-val userInput = functionalComponent<InputProps> { props ->
+val userInput = functionalComponent<EditableNameProps> { props ->
   styledInput {
     css {
       +WelcomeStyles.textInput
@@ -25,18 +26,33 @@ val userInput = functionalComponent<InputProps> { props ->
     attrs {
       type = InputType.text
       value = props.name
-      onChangeFunction = { event -> props.onClick((event.target as HTMLInputElement).value) }
+      onChangeFunction = { event -> props.setName((event.target as HTMLInputElement).value) }
     }
   }
 }
 
-fun RBuilder.userInput(handler: InputProps.() -> Unit) = child(userInput) {
-  attrs {
-    handler()
+fun RBuilder.chars(handler: EditableNameProps.() -> Unit) = child(chars) { attrs { handler() } }
+
+fun RBuilder.userInput(handler: EditableNameProps.() -> Unit) = child(userInput) { attrs { handler() } }
+
+fun RBuilder.inputValidation(handler: EditableNameProps.() -> Unit) = child(inputValidation) { attrs { handler() } }
+
+val inputValidation = functionalComponent<EditableNameProps> { props ->
+  div {
+    if (props.name.length < 5) {
+      +"text too short!"
+    } else if (props.name.length > 20) {
+      +"text too long!"
+    } else {
+      chars {
+        name = props.name
+        setName = props.setName
+      }
+    }
   }
 }
 
-val userOutput = functionalComponent<WelcomeProps> { props ->
+val userOutput = functionalComponent<NameProps> { props ->
   styledDiv {
     css {
       +WelcomeStyles.textContainer
@@ -45,8 +61,24 @@ val userOutput = functionalComponent<WelcomeProps> { props ->
   }
 }
 
+val chars = functionalComponent<EditableNameProps> { props ->
+
+  fun removeChar(index: Int) {
+    props.setName(props.name.removeRange(index, index+1))
+  }
+  props.name.mapIndexed { i, c ->
+    span {
+      key = i.toString()
+      +c.toString()
+      attrs {
+        onClickFunction = { event -> removeChar(i) }
+      }
+    }
+  }
+}
+
 @JsExport
-val welcome = functionalComponent<WelcomeProps> { props ->
+val welcome = functionalComponent<NameProps> { props ->
 
   val (state, setState) = useState(props.name)
 
@@ -55,9 +87,10 @@ val welcome = functionalComponent<WelcomeProps> { props ->
   }
   userInput {
     name = state
-    onClick = setState
+    setName = setState
   }
-  child(userOutput) {
-    attrs.name = state
+  inputValidation {
+    name = state
+    setName = setState
   }
 }

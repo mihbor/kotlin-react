@@ -127,8 +127,11 @@ tasks.create<Jar>("fatJar") {
     attributes["Main-Class"] = application.mainClassName
   }
   from(Callable { configurations["runtimeClasspath"].map { if (it.isDirectory) it else zipTree(it) } })
-  with(tasks["jvmJar"] as CopySpec)
+  val jvmJar = tasks["jvmJar"]
+  dependsOn(jvmJar)
+  with(jvmJar as CopySpec)
 }
+
 tasks.getByName<JavaExec>("run") {
   dependsOn(tasks.getByName<Jar>("jvmJar"))
   classpath(tasks.getByName<Jar>("jvmJar"))
