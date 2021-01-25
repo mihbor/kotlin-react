@@ -10,6 +10,7 @@ fun main() {
       child(welcome) {
         attrs.name = "Kotlin/JS"
       }
+      child(solarSystem) { }
     }
   }
 }

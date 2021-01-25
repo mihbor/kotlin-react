@@ -8,6 +8,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
+import io.ktor.response.*
 import io.ktor.serialization.*
 import kotlinx.html.*
 
@@ -41,6 +42,9 @@ fun main() {
     routing {
       get("/") {
         call.respondHtml(HttpStatusCode.OK, HTML::index)
+      }
+      get(planetsPath) {
+        call.respond(listOf("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune").map{ Planet(it) })
       }
       static("/static") {
         resources()

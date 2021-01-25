@@ -3,10 +3,9 @@ import kotlinx.html.js.onChangeFunction
 import kotlinx.html.js.onClickFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
-import react.dom.div
-import react.dom.span
 import styled.css
-import styled.styledDiv
+import styled.styledDiv as div
+import styled.styledSpan as span
 import styled.styledInput
 
 external interface NameProps : RProps {
@@ -53,7 +52,7 @@ val inputValidation = functionalComponent<EditableNameProps> { props ->
 }
 
 val userOutput = functionalComponent<NameProps> { props ->
-  styledDiv {
+  div {
     css {
       +WelcomeStyles.textContainer
     }

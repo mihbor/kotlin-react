@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 
 val ktorVersion = "1.4.0"
+val serializationVersion = "1.0.0-RC"
 
 plugins {
   kotlin("multiplatform") version "1.4.10"
@@ -45,7 +46,13 @@ kotlin {
     }
   }
   sourceSets {
-    val commonMain by getting
+    val commonMain by getting {
+      dependencies {
+        implementation(kotlin("stdlib-common"))
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
+        implementation("io.ktor:ktor-client-core:$ktorVersion")
+      }
+    }
     val commonTest by getting {
       dependencies {
         implementation(kotlin("test-common"))
