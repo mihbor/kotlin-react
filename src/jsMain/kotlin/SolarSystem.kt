@@ -1,27 +1,27 @@
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
-import kotlinx.html.js.onClickFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
 import react.dom.h1
-import react.dom.li
-import react.dom.ul
+import react.dom.input
 import styled.css
 import styled.styledDiv as div
 import styled.styledSpan as span
-import styled.styledInput
 
 private val scope = MainScope()
 
+data class AppState(val planets: List<Planet>, val planetFilter: String) : RState
+
 @JsExport
 val solarSystem = functionalComponent<RProps> { _ ->
-  val (state, setState) = useState(emptyList<Planet>())
+  val (state, setState) = useState(AppState(emptyList(), ""))
 
   useEffect(dependencies = listOf()) {
     scope.launch {
-      setState(getPlanets())
+      setState(AppState(getPlanets(), ""))
     }
   }
 
@@ -29,9 +29,23 @@ val solarSystem = functionalComponent<RProps> { _ ->
     +"Solar System Planets"
   }
 
-  ul {
-    state.map {
-      li {
+  input(InputType.search) {
+    attrs {
+      placeholder = "search..."
+      onChangeFunction = { event -> setState(AppState(state.planets, (event.target as HTMLInputElement).value))}
+    }
+  }
+
+  div {
+    css {
+      display = Display.grid
+      gap=Gap("10px")
+      gridTemplateColumns=GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
+    }
+    state.planets.filter {
+      it.name.toLowerCase().contains(state.planetFilter.toLowerCase())
+    }.map {
+      span {
         key = it.name
         +it.name
       }
