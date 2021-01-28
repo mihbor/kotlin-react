@@ -44,9 +44,11 @@ val solarSystem = functionalComponent<RProps> { _ ->
     child(PlanetList::class) {
       attrs {
         planets = state.planets.filter {
-          it.name.toLowerCase().contains(state.planetFilter.toLowerCase())
+          it.asText().toLowerCase().contains(state.planetFilter.toLowerCase())
         }
       }
     }
   }
 }
+
+fun Planet.asText() = name + " " + moons.joinToString(" ")

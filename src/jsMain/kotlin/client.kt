@@ -7,9 +7,9 @@ fun main() {
   window.onload = {
     document.getElementById("root")?.also { it.innerHTML = "" }
     render(document.getElementById("root")) {
-      child(welcome) {
-        attrs.name = "Kotlin/JS"
-      }
+//      child(welcome) {
+//        attrs.name = "Kotlin/JS"
+//      }
       child(solarSystem) { }
     }
   }

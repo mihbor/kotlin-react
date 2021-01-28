@@ -1,10 +1,14 @@
+import kotlinx.css.*
 import react.RBuilder
 import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.a
-import react.dom.img
+import react.dom.li
+import react.dom.ol
+import styled.css
 import styled.styledDiv as div
+import styled.styledImg as img
 
 external interface PlanetListProps : RProps {
   var planets: List<Planet>
@@ -14,13 +18,29 @@ class PlanetList(props: PlanetListProps) : RComponent<PlanetListProps, RState>(p
   override fun RBuilder.render() {
     props.planets.map {
       div {
-        a(href=it.wiki, target="new") {
-          key = it.name
-          +it.name
+        css {
+          textAlign = TextAlign.center
+        }
+        div {
+          a(href=it.wiki, target="new") {
+            key = it.name
+            +it.name
+          }
         }
         img(src=it.image){
-          attrs {
-            width = "400"
+          css {
+            width = 400.px
+          }
+        }
+        div {
+          css {
+            width = 200.px
+          }
+          +"Moons:"
+          ol {
+            it.moons.map {
+              li { +it }
+            }
           }
         }
       }
