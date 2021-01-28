@@ -12,13 +12,26 @@ import io.ktor.response.*
 import io.ktor.serialization.*
 import kotlinx.html.*
 
-fun HTML.index() {
+fun HTML.planets() {
   head {
     title("Kotlin React App")
   }
   body {
     div {
-      id = "root"
+      id = "planets"
+      +"Hello from Ktor! Loading ... "
+    }
+    script(src = "/static/scripts.js") {}
+  }
+}
+
+fun HTML.pioneers() {
+  head {
+    title("Kotlin React App")
+  }
+  body {
+    div {
+      id = "pioneers"
       +"Hello from Ktor! Loading ... "
     }
     script(src = "/static/scripts.js") {}
@@ -41,10 +54,19 @@ fun main() {
     }
     routing {
       get("/") {
-        call.respondHtml(HttpStatusCode.OK, HTML::index)
+        call.respondHtml(HttpStatusCode.OK, HTML::planets)
+      }
+      get("/planets.html") {
+        call.respondHtml(HttpStatusCode.OK, HTML::planets)
+      }
+      get("/pioneers.html") {
+        call.respondHtml(HttpStatusCode.OK, HTML::pioneers)
       }
       get(planetsPath) {
         call.respond(solarSystemPlanets)
+      }
+      get(pioneersPath) {
+        call.respond(spacePioneers)
       }
       static("/static") {
         resources()

@@ -5,12 +5,19 @@ import react.child
 
 fun main() {
   window.onload = {
-    document.getElementById("root")?.also { it.innerHTML = "" }
-    render(document.getElementById("root")) {
-//      child(welcome) {
-//        attrs.name = "Kotlin/JS"
-//      }
-      child(solarSystem) { }
-    }
+    document.getElementById("planets")
+      ?.also { it.innerHTML = "" }
+      ?.also {
+        render(it) {
+          child(solarSystem) { }
+        }
+      }
+    document.getElementById("pioneers")
+      ?.also { it.innerHTML = "" }
+      ?.also {
+        render(it) {
+          child(pioneers) { }
+        }
+      }
   }
 }

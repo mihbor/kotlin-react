@@ -14,3 +14,7 @@ val jsonClient = HttpClient {
 suspend fun getPlanets() : List<Planet> {
   return jsonClient.get(endpoint + planetsPath)
 }
+
+suspend fun getPioneers() : List<Person> {
+  return jsonClient.get(endpoint + pioneersPath)
+}

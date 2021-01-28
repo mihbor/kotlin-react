@@ -5,6 +5,8 @@ import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
+import react.dom.a
+import react.dom.br
 import react.dom.h1
 import react.dom.input
 import styled.css
@@ -26,6 +28,14 @@ val solarSystem = functionalComponent<RProps> { _ ->
 
   h1 {
     +"Solar System Planets"
+  }
+
+  div {
+    a(href="/pioneers.html") {
+      +"Space Pioneers"
+    }
+    br {  }
+    br {  }
   }
 
   input(InputType.search) {
