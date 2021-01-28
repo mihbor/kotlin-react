@@ -44,7 +44,7 @@ fun main() {
         call.respondHtml(HttpStatusCode.OK, HTML::index)
       }
       get(planetsPath) {
-        call.respond(listOf("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune").map{ Planet(it) })
+        call.respond(solarSystemPlanets)
       }
       static("/static") {
         resources()

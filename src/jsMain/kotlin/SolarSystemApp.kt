@@ -5,11 +5,12 @@ import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
+import react.dom.a
 import react.dom.h1
+import react.dom.img
 import react.dom.input
 import styled.css
 import styled.styledDiv as div
-import styled.styledSpan as span
 
 private val scope = MainScope()
 
@@ -45,9 +46,16 @@ val solarSystem = functionalComponent<RProps> { _ ->
     state.planets.filter {
       it.name.toLowerCase().contains(state.planetFilter.toLowerCase())
     }.map {
-      span {
-        key = it.name
-        +it.name
+      div {
+        a(href=it.wiki) {
+          key = it.name
+          +it.name
+        }
+        img(src=it.image){
+          attrs {
+            width = "400"
+          }
+        }
       }
     }
   }

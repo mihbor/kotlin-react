@@ -1,6 +1,4 @@
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Planet(val name: String)
-
-const val planetsPath = "/planets"
+data class Planet(val name: String, val image: String, val wiki: String)
