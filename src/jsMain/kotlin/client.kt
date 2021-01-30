@@ -19,5 +19,12 @@ fun main() {
           child(pioneers) { }
         }
       }
+    document.getElementById("spacecraft")
+      ?.also { it.innerHTML = "" }
+      ?.also {
+        render(it) {
+          child(spacecraft) { }
+        }
+      }
   }
 }

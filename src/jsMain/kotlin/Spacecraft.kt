@@ -4,30 +4,33 @@ import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
-import react.*
+import react.RProps
 import react.dom.a
 import react.dom.br
 import react.dom.h1
 import react.dom.input
+import react.functionalComponent
+import react.useEffect
+import react.useState
 import styled.css
 import styled.styledDiv as div
 
 private val scope = MainScope()
 
-data class PioneersState(val pioneers: List<Person>, val personFilter: String)
+data class SpacecraftState(val spacecraft: List<Spacecraft>, val spacecraftFilter: String)
 
 @JsExport
-val pioneers = functionalComponent<RProps> {
-  val (state, setState) = useState(PioneersState(emptyList(), ""))
+val spacecraft = functionalComponent<RProps> {
+  val (state, setState) = useState(SpacecraftState(emptyList(), ""))
 
   useEffect(dependencies = listOf()) {
     scope.launch {
-      setState(PioneersState(getPioneers(), ""))
+      setState(SpacecraftState(getSpacecraft(), ""))
     }
   }
 
   h1 {
-    +"Space Pioneers"
+    +"Spacecraft"
   }
 
   div {
@@ -35,8 +38,8 @@ val pioneers = functionalComponent<RProps> {
       +"Solar System Planets"
     }
     +" | "
-    a(href="/spacecraft.html") {
-      +"Spacecraft"
+    a(href="/pioneers.html") {
+      +"Space Pioneers"
     }
     br {  }
     br {  }
@@ -45,7 +48,7 @@ val pioneers = functionalComponent<RProps> {
   input(InputType.search) {
     attrs {
       placeholder = "search..."
-      onChangeFunction = { event -> setState(PioneersState(state.pioneers, (event.target as HTMLInputElement).value))}
+      onChangeFunction = { event -> setState(SpacecraftState(state.spacecraft, (event.target as HTMLInputElement).value))}
     }
   }
 
@@ -55,14 +58,14 @@ val pioneers = functionalComponent<RProps> {
       gap= Gap("10px")
       gridTemplateColumns= GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
     }
-    child(PersonList::class) {
+    child(SpacecraftList::class) {
       attrs {
-        people = state.pioneers.filter {
-          it.asText().toLowerCase().contains(state.personFilter.toLowerCase())
+        spacecraft = state.spacecraft.filter {
+          it.asText().toLowerCase().contains(state.spacecraftFilter.toLowerCase())
         }
       }
     }
   }
 }
 
-fun Person.asText() = "$name $born $died"
+fun Spacecraft.asText() = "$name $launched $decommissioned"

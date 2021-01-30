@@ -18,3 +18,7 @@ suspend fun getPlanets() : List<Planet> {
 suspend fun getPioneers() : List<Person> {
   return jsonClient.get(endpoint + pioneersPath)
 }
+
+suspend fun getSpacecraft() : List<Spacecraft> {
+  return jsonClient.get(endpoint + spacecraftPath)
+}

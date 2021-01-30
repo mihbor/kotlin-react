@@ -14,15 +14,15 @@ import styled.styledDiv as div
 
 private val scope = MainScope()
 
-data class AppState(val planets: List<Planet>, val planetFilter: String) : RState
+data class SolarSystemState(val planets: List<Planet>, val planetFilter: String)
 
 @JsExport
-val solarSystem = functionalComponent<RProps> { _ ->
-  val (state, setState) = useState(AppState(emptyList(), ""))
+val solarSystem = functionalComponent<RProps> {
+  val (state, setState) = useState(SolarSystemState(emptyList(), ""))
 
   useEffect(dependencies = listOf()) {
     scope.launch {
-      setState(AppState(getPlanets(), ""))
+      setState(SolarSystemState(getPlanets(), ""))
     }
   }
 
@@ -34,6 +34,10 @@ val solarSystem = functionalComponent<RProps> { _ ->
     a(href="/pioneers.html") {
       +"Space Pioneers"
     }
+    +" | "
+    a(href="/spacecraft.html") {
+      +"Spacecraft"
+    }
     br {  }
     br {  }
   }
@@ -41,7 +45,7 @@ val solarSystem = functionalComponent<RProps> { _ ->
   input(InputType.search) {
     attrs {
       placeholder = "search..."
-      onChangeFunction = { event -> setState(AppState(state.planets, (event.target as HTMLInputElement).value))}
+      onChangeFunction = { event -> setState(SolarSystemState(state.planets, (event.target as HTMLInputElement).value))}
     }
   }
 
