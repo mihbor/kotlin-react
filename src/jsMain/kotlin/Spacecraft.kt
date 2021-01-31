@@ -5,10 +5,7 @@ import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
 import react.RProps
-import react.dom.a
-import react.dom.br
-import react.dom.h1
-import react.dom.input
+import react.dom.*
 import react.functionalComponent
 import react.useEffect
 import react.useState
@@ -17,15 +14,20 @@ import styled.styledDiv as div
 
 private val scope = MainScope()
 
-data class SpacecraftState(val spacecraft: List<Spacecraft>, val spacecraftFilter: String)
+data class SpacecraftState(
+  val spacecraft: List<Spacecraft>,
+  val landers: List<Spacecraft>,
+  val launchers: List<Spacecraft>,
+  val spacecraftFilter: String
+)
 
 @JsExport
 val spacecraft = functionalComponent<RProps> {
-  val (state, setState) = useState(SpacecraftState(emptyList(), ""))
+  val (state, setState) = useState(SpacecraftState(emptyList(), emptyList(), emptyList(),""))
 
   useEffect(dependencies = listOf()) {
     scope.launch {
-      setState(SpacecraftState(getSpacecraft(), ""))
+      setState(SpacecraftState(getSpacecraft(), getLanders(), getLaunchers(), ""))
     }
   }
 
@@ -48,19 +50,55 @@ val spacecraft = functionalComponent<RProps> {
   input(InputType.search) {
     attrs {
       placeholder = "search..."
-      onChangeFunction = { event -> setState(SpacecraftState(state.spacecraft, (event.target as HTMLInputElement).value))}
+      onChangeFunction = { event -> setState(SpacecraftState(state.spacecraft, state.landers, state.launchers, (event.target as HTMLInputElement).value))}
     }
   }
 
   div {
     css {
       display = Display.grid
-      gap= Gap("10px")
-      gridTemplateColumns= GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
+      gap = Gap("10px")
+      gridTemplateColumns = GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
     }
     child(SpacecraftList::class) {
       attrs {
         spacecraft = state.spacecraft.filter {
+          it.asText().toLowerCase().contains(state.spacecraftFilter.toLowerCase())
+        }
+      }
+    }
+  }
+  hr { }
+  h2 {
+    +"Landers"
+  }
+  div {
+    css {
+      display = Display.grid
+      gap = Gap("10px")
+      gridTemplateColumns = GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
+    }
+    child(SpacecraftList::class) {
+      attrs {
+        spacecraft = state.landers.filter {
+          it.asText().toLowerCase().contains(state.spacecraftFilter.toLowerCase())
+        }
+      }
+    }
+  }
+  hr { }
+  h2 {
+    +"Launchers"
+  }
+  div {
+    css {
+      display = Display.grid
+      gap = Gap("10px")
+      gridTemplateColumns = GridTemplateColumns(1.fr, 1.fr, 1.fr, 1.fr)
+    }
+    child(SpacecraftList::class) {
+      attrs {
+        spacecraft = state.launchers.filter {
           it.asText().toLowerCase().contains(state.spacecraftFilter.toLowerCase())
         }
       }

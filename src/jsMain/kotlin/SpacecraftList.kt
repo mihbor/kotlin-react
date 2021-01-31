@@ -28,7 +28,8 @@ class SpacecraftList(props: SpacecraftListProps) : RComponent<SpacecraftListProp
         }
         img(src=it.image){
           css {
-            width = 400.px
+            maxWidth = 400.px
+            maxHeight = 400.px
           }
         }
         div {

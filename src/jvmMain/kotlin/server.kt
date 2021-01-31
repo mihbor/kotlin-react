@@ -61,6 +61,12 @@ fun main() {
       get(spacecraftPath) {
         call.respond(spacecraftList)
       }
+      get(landersPath) {
+        call.respond(landerList)
+      }
+      get(launchersPath) {
+        call.respond(launcherList)
+      }
       static("/static") {
         resources()
       }

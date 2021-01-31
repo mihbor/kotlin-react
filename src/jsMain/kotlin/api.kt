@@ -22,3 +22,11 @@ suspend fun getPioneers() : List<Person> {
 suspend fun getSpacecraft() : List<Spacecraft> {
   return jsonClient.get(endpoint + spacecraftPath)
 }
+
+suspend fun getLanders() : List<Spacecraft> {
+  return jsonClient.get(endpoint + landersPath)
+}
+
+suspend fun getLaunchers() : List<Spacecraft> {
+  return jsonClient.get(endpoint + launchersPath)
+}
