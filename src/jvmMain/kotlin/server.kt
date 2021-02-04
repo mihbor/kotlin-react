@@ -41,16 +41,7 @@ fun main() {
     }
     routing {
       get("/") {
-        call.respondHtml(HttpStatusCode.OK, { index("planets") })
-      }
-      get("/planets.html") {
-        call.respondHtml(HttpStatusCode.OK, { index("planets") })
-      }
-      get("/pioneers.html") {
-        call.respondHtml(HttpStatusCode.OK, { index("pioneers") })
-      }
-      get("/spacecraft.html") {
-        call.respondHtml(HttpStatusCode.OK, { index("spacecraft") })
+        call.respondHtml(HttpStatusCode.OK, { index("root") })
       }
       get(planetsPath) {
         call.respond(solarSystemPlanets)

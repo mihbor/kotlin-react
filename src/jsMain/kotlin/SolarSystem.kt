@@ -5,10 +5,10 @@ import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
-import react.dom.a
 import react.dom.br
 import react.dom.h1
 import react.dom.input
+import react.router.dom.routeLink
 import styled.css
 import styled.styledDiv as div
 
@@ -31,11 +31,11 @@ val solarSystem = functionalComponent<RProps> {
   }
 
   div {
-    a(href="/pioneers.html") {
+    routeLink(to="/pioneers.html") {
       +"Space Pioneers"
     }
     +" | "
-    a(href="/spacecraft.html") {
+    routeLink(to="/spacecraft.html") {
       +"Spacecraft"
     }
     br {  }

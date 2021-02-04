@@ -7,6 +7,7 @@ import org.w3c.dom.HTMLInputElement
 import react.RProps
 import react.dom.*
 import react.functionalComponent
+import react.router.dom.routeLink
 import react.useEffect
 import react.useState
 import styled.css
@@ -36,11 +37,11 @@ val spacecraft = functionalComponent<RProps> {
   }
 
   div {
-    a(href="/planets.html") {
+    routeLink(to="/planets.html") {
       +"Solar System Planets"
     }
     +" | "
-    a(href="/pioneers.html") {
+    routeLink(to="/pioneers.html") {
       +"Space Pioneers"
     }
     br {  }

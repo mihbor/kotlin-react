@@ -2,28 +2,29 @@ import react.dom.render
 import kotlinx.browser.document
 import kotlinx.browser.window
 import react.child
+import react.router.dom.browserRouter
+import react.router.dom.route
 
 fun main() {
   window.onload = {
-    document.getElementById("planets")
+    document.getElementById("root")
       ?.also { it.innerHTML = "" }
       ?.also {
         render(it) {
-          child(solarSystem) { }
-        }
-      }
-    document.getElementById("pioneers")
-      ?.also { it.innerHTML = "" }
-      ?.also {
-        render(it) {
-          child(pioneers) { }
-        }
-      }
-    document.getElementById("spacecraft")
-      ?.also { it.innerHTML = "" }
-      ?.also {
-        render(it) {
-          child(spacecraft) { }
+          browserRouter {
+            route("/", exact = true) {
+              child(solarSystem) { }
+            }
+            route("/planets.html") {
+              child(solarSystem) { }
+            }
+            route("/pioneers.html") {
+              child(pioneers) { }
+            }
+            route("/spacecraft.html") {
+              child(spacecraft) { }
+            }
+          }
         }
       }
   }
