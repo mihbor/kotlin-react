@@ -4,6 +4,7 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.a
+import react.dom.br
 import styled.css
 import styled.styledDiv as div
 import styled.styledImg as img
@@ -32,6 +33,12 @@ class PersonList(props: PersonListProps) : RComponent<PersonListProps, RState>(p
         }
         div {
           +"Born ${it.born} Died ${it.died}"
+        }
+        div {
+          it.summary?.split("\n")?.map{
+            +it
+            br { }
+          }
         }
       }
     }

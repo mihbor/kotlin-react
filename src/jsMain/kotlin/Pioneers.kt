@@ -65,4 +65,4 @@ val pioneers = functionalComponent<RProps> {
   }
 }
 
-fun Person.asText() = "$name $born $died"
+fun Person.asText() = "$name $born $died ${summary ?: ""}"
