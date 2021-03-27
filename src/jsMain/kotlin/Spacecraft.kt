@@ -71,7 +71,7 @@ val spacecraft = functionalComponent<RProps> {
   }
   hr { }
   h2 {
-    +"Landers"
+    +"Landers and Rovers"
   }
   div {
     css {

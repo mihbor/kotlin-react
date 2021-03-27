@@ -36,10 +36,12 @@ class PlanetList(props: PlanetListProps) : RComponent<PlanetListProps, RState>(p
           css {
             width = 200.px
           }
-          +"Moons:"
-          ol {
-            it.moons.map {
-              li { +it }
+          it.moons.takeIf{ it.isNotEmpty() }?.run{
+            +"Major moons:"
+            ol {
+              map {
+                li { +it }
+              }
             }
           }
         }

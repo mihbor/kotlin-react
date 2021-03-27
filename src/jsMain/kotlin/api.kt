@@ -11,22 +11,19 @@ val jsonClient = HttpClient {
   install(JsonFeature) { serializer = KotlinxSerializer() }
 }
 
-suspend fun getPlanets() : List<Planet> {
-  return jsonClient.get(endpoint + planetsPath)
+private inline suspend fun <reified T>getOrDefault(path: String, default: T): T = try {
+  jsonClient.get(endpoint + path)
+} catch (e: Throwable) {
+  console.log(e)
+  default
 }
 
-suspend fun getPioneers() : List<Person> {
-  return jsonClient.get(endpoint + pioneersPath)
-}
+suspend fun getPlanets() : List<Planet> = getOrDefault(planetsPath, solarSystemPlanets)
 
-suspend fun getSpacecraft() : List<Spacecraft> {
-  return jsonClient.get(endpoint + spacecraftPath)
-}
+suspend fun getPioneers() : List<Person> = getOrDefault(pioneersPath, spacePioneers)
 
-suspend fun getLanders() : List<Spacecraft> {
-  return jsonClient.get(endpoint + landersPath)
-}
+suspend fun getSpacecraft() : List<Spacecraft> = getOrDefault(spacecraftPath, spacecraftList)
 
-suspend fun getLaunchers() : List<Spacecraft> {
-  return jsonClient.get(endpoint + launchersPath)
-}
+suspend fun getLanders() : List<Spacecraft> = getOrDefault(landersPath, landerList)
+
+suspend fun getLaunchers() : List<Spacecraft> = getOrDefault(launchersPath, launcherList)

@@ -30,27 +30,33 @@ The square of a planet's orbital period is proportional to the cube of the lengt
   Person("Konstantin Tsiolkovsky",
     1857, 1935,
     "https://upload.wikimedia.org/wikipedia/commons/9/92/Konstantin_Tsiolkovsky_1934.jpg",
-    "https://en.wikipedia.org/wiki/Konstantin_Tsiolkovsky"
+    "https://en.wikipedia.org/wiki/Konstantin_Tsiolkovsky",
+    """Russian rocket scientist pioneered the astronautics theory, authored the rocket equation:
+Δv = v_e * ln(m_0/m_f) = I_sp * g_0 * ln(m_0/m_f)"""
   ),
   Person("Robert H. Goddard",
     1882, 1945,
     "https://upload.wikimedia.org/wikipedia/commons/3/3f/Dr._Robert_H._Goddard_-_GPN-2002-000131.jpg",
-    "https://en.wikipedia.org/wiki/Robert_H._Goddard"
+    "https://en.wikipedia.org/wiki/Robert_H._Goddard",
+    "American engineer, professor, physicist, and inventor who is credited with creating and building the world's first liquid-fueled rocket"
   ),
   Person("Hermann Oberth",
     1894, 1989,
     "https://upload.wikimedia.org/wikipedia/commons/2/2b/Hermann_Oberth_1950s.jpg",
-    "https://en.wikipedia.org/wiki/Hermann_Oberth"
+    "https://en.wikipedia.org/wiki/Hermann_Oberth",
+    "Austro-Hungarian-born German physicist and engineer who envisaged using rockets for interplanetary travel"
   ),
   Person("Wernher von Braun",
     1912, 1977,
     "https://upload.wikimedia.org/wikipedia/commons/5/56/Wernher_von_Braun_1960.jpg",
-    "https://en.wikipedia.org/wiki/Wernher_von_Braun"
+    "https://en.wikipedia.org/wiki/Wernher_von_Braun",
+    "German-born American aerospace engineer, chief architect of the Saturn V rocket"
   ),
   Person("Sergei Korolev",
     1907, 1966,
     "https://upload.wikimedia.org/wikipedia/commons/a/ab/%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B9_%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D0%B8%D1%87_%D0%9A%D0%BE%D1%80%D0%BE%D0%BB%D1%91%D0%B2_%28%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82%29.jpg",
-    "https://en.wikipedia.org/wiki/Sergei_Korolev"
+    "https://en.wikipedia.org/wiki/Sergei_Korolev",
+    "Chief designer of the Soviet space program"
   ),
 )
 

@@ -33,9 +33,15 @@ class SpacecraftList(props: SpacecraftListProps) : RComponent<SpacecraftListProp
           }
         }
         div {
-          +"Launched: ${it.launched} "
+          +"First used: ${it.launched} "
           br { }
           +"End of mission: ${it.decommissioned}"
+        }
+        div {
+          it.summary?.split("\n")?.map{
+            +it
+            br { }
+          }
         }
       }
     }

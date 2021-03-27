@@ -1,9 +1,55 @@
 
 val spacecraftList = listOf(
-  Spacecraft("Sputnik 1", "1957-10-04", "1957-10-26", "https://upload.wikimedia.org/wikipedia/commons/b/be/Sputnik_asm.jpg", "https://en.wikipedia.org/wiki/Sputnik_1"),
-  Spacecraft("Sputnik 2", "1957-11-03", "1958-04-14", "https://upload.wikimedia.org/wikipedia/commons/3/33/Laika_ac_Sputnik_2_Replica_%286995685051%29.jpg", "https://en.wikipedia.org/wiki/Sputnik_2"),
-  Spacecraft("Explorer 1", "1958-02-01", "1958-05-23", "https://upload.wikimedia.org/wikipedia/commons/7/73/Explorer1.jpg", "https://en.wikipedia.org/wiki/Explorer_1"),
-  Spacecraft("Vostok 1", "1961-04-12", "1961-04-12", "https://upload.wikimedia.org/wikipedia/commons/d/df/Vostok_spacecraft.jpg", "https://en.wikipedia.org/wiki/Vostok_1"),
+  Spacecraft("Sputnik 1", "1957-10-04", "1957-10-26",
+    "https://upload.wikimedia.org/wikipedia/commons/b/be/Sputnik_asm.jpg",
+    "https://en.wikipedia.org/wiki/Sputnik_1",
+    "Launched by the Soviet Union, first artificial satellite around Earth. Broadcast radio pulses easily detectable on Earth"
+  ),
+  Spacecraft("Sputnik 2", "1957-11-03", "1958-04-14",
+    "https://upload.wikimedia.org/wikipedia/commons/3/33/Laika_ac_Sputnik_2_Replica_%286995685051%29.jpg",
+    "https://en.wikipedia.org/wiki/Sputnik_2",
+    "Launched by the Soviet Union was the second spacecraft launched into Earth orbit and first to carry a living animal"
+  ),
+  Spacecraft("Explorer 1", "1958-02-01", "1958-05-23",
+    "https://upload.wikimedia.org/wikipedia/commons/7/73/Explorer1.jpg",
+    "https://en.wikipedia.org/wiki/Explorer_1",
+    "First satellite launched by the United States and first spacecraft to detect the Van Allen radiation belt"
+  ),
+  Spacecraft("Vostok 1", "1961-04-12", "1961-04-12",
+    "https://upload.wikimedia.org/wikipedia/commons/d/df/Vostok_spacecraft.jpg",
+    "https://en.wikipedia.org/wiki/Vostok_1",
+    "Launched by the Soviet Union, the first human spaceflight in history by Yuri Gagarin"
+  ),
+  Spacecraft("Mercury-Redstone 3", "1961-05-05", "1961-05-05",
+    "https://upload.wikimedia.org/wikipedia/commons/1/15/Mercury-Redstone_3_Launch_MSFC-6100884.jpg",
+    "https://en.wikipedia.org/wiki/Mercury-Redstone_3",
+    "First United States human suborbital spaceflight by Alan Shepard"
+  ),
+  Spacecraft("Mercury-Atlas 6", "1962-02-20", "1962-05-20",
+    "https://upload.wikimedia.org/wikipedia/commons/3/36/Launch_of_Friendship_7_-_GPN-2000-000686.jpg",
+    "https://en.wikipedia.org/wiki/Mercury-Atlas_6",
+    "First United States human orbital spaceflight by John Glenn"
+  ),
+  Spacecraft("Vostok 6", "1963-06-16", "1963-06-19",
+    "https://upload.wikimedia.org/wikipedia/commons/4/49/Vostok_6_capsule_on_display%2C_2016.jpg",
+    "https://en.wikipedia.org/wiki/Vostok_6",
+    "Launched by the Soviet Union with Valentina Tereshkova, the first woman to have flown in space"
+  ),
+  Spacecraft("Voskhod 2", "1965-03-18", "1965-03-19",
+    "https://upload.wikimedia.org/wikipedia/commons/1/16/Voskhod_spacecraft_diagram.png",
+    "https://en.wikipedia.org/wiki/Voskhod_2",
+    """Launched by the Soviet Union and equipped with an inflatable airlock allowed
+Alexei Leonov become the first person to leave the spacecraft to conduct a spacewalk, which lasted 12-minutes"""
+  ),
+  Spacecraft("Gemini IV", "1965-06-03", "1965-06-07",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gemini_4_National_Air_and_Space_Museum_2018.tif/lossy-page1-800px-Gemini_4_National_Air_and_Space_Museum_2018.tif.jpg",
+    "https://en.wikipedia.org/wiki/Gemini_4",
+    "First United States spaceflight to include a spacewalk, performed by Ed White"
+  ),
+  Spacecraft("Apollo command and service module", "1966-02-26", "1975-07-24",
+    "https://upload.wikimedia.org/wikipedia/commons/c/c0/Apollo_CSM_lunar_orbit.jpg",
+    "https://en.wikipedia.org/wiki/Apollo_command_and_service_module"
+  ),
   Spacecraft("Salyut 1", "1971-04-19", "1971-10-11", "https://upload.wikimedia.org/wikipedia/en/c/cc/Salyut_1.jpg", "https://en.wikipedia.org/wiki/Salyut_1"),
   Spacecraft("Skylab", "1973-05-14", "1996-07-11", "https://upload.wikimedia.org/wikipedia/commons/0/07/Skylab_%28SL-4%29.jpg", "https://en.wikipedia.org/wiki/Skylab"),
   Spacecraft("Mir", "1986-02-20", "2001-03-23", "https://upload.wikimedia.org/wikipedia/commons/0/09/Mir_Space_Station_viewed_from_Endeavour_during_STS-89.jpg", "https://en.wikipedia.org/wiki/Mir"),
@@ -17,6 +63,7 @@ val spacecraftList = listOf(
   Spacecraft("XMM-Newton", "1999-12-10", "N/A", "https://upload.wikimedia.org/wikipedia/commons/4/4a/XMM-Newton_spacecraft_model.png", "https://en.wikipedia.org/wiki/XMM-Newton"),
   Spacecraft("Spitzer Space Telescope", "2003-08-25", "2020-01-30", "https://upload.wikimedia.org/wikipedia/commons/8/8d/Spitzer_space_telescope.jpg", "https://en.wikipedia.org/wiki/Spitzer_Space_Telescope"),
   Spacecraft("Rosetta", "2004-03-02", "2016-09-30", "https://upload.wikimedia.org/wikipedia/commons/9/9a/Rosetta_spacecraft_model.png", "https://en.wikipedia.org/wiki/Rosetta_(spacecraft)"),
+  Spacecraft("Kepler Space Telescope", "2009-03-07", "2018-11-15", "https://upload.wikimedia.org/wikipedia/commons/4/45/Kepler_Space_Telescope_spacecraft_model_2.png", "https://en.wikipedia.org/wiki/Kepler_space_telescope"),
   Spacecraft("Tiangong-1", "2011-09-29", "2018-04-02", "https://upload.wikimedia.org/wikipedia/commons/6/64/Tiangong_1_drawing_%28cropped%29.png", "https://en.wikipedia.org/wiki/Tiangong-1"),
   Spacecraft("Gaia", "2013-12-19", "N/A", "https://upload.wikimedia.org/wikipedia/en/0/01/Gaia_spacecraft.jpg", "https://en.wikipedia.org/wiki/Gaia_(spacecraft)"),
   Spacecraft("James Webb Space Telescope", "2021-10-31", "N/A", "https://upload.wikimedia.org/wikipedia/commons/4/47/James_Webb_Space_Telescope_2009_top.jpg", "https://en.wikipedia.org/wiki/James_Webb_Space_Telescope")
@@ -24,6 +71,7 @@ val spacecraftList = listOf(
 
 val landerList = listOf(
   Spacecraft("Apollo Lunar Module", "1968-01-22", "1972-12-15", "https://upload.wikimedia.org/wikipedia/commons/2/2a/Apollo16LM.jpg", "https://en.wikipedia.org/wiki/Apollo_Lunar_Module"),
+  Spacecraft("Lunar Roving Vehicle", "1971-07-31", "1972-12-14", "https://upload.wikimedia.org/wikipedia/commons/e/ed/Apollo15LunarRover.jpg", "https://en.wikipedia.org/wiki/Lunar_Roving_Vehicle"),
   Spacecraft("Lunokhod 1", "1970-11-10", "1971-09-14", "https://upload.wikimedia.org/wikipedia/commons/7/79/Soviet_moonrover.JPG", "https://en.wikipedia.org/wiki/Lunokhod_1"),
   Spacecraft("Philae", "2004-03-02", "2015-07-09", "https://upload.wikimedia.org/wikipedia/commons/9/95/Philae_lander_%28transparent_bg%29.png", "https://en.wikipedia.org/wiki/Philae_(spacecraft)"),
   Spacecraft("Curiosity", "2011-11-26", "N/A", "https://upload.wikimedia.org/wikipedia/commons/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg", "https://en.wikipedia.org/wiki/Curiosity_(rover)")

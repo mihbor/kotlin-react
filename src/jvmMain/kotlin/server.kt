@@ -11,19 +11,6 @@ import io.ktor.response.*
 import io.ktor.serialization.*
 import kotlinx.html.*
 
-fun HTML.index() {
-  head {
-    title("Kotlin React App")
-  }
-  body {
-    div {
-      id = "root"
-      +"Hello from Ktor! Loading ... "
-    }
-    script(src = "/static/scripts.js") {}
-  }
-}
-
 fun main() {
   embeddedServer(Netty, port = 8080, host = "127.0.0.1") {
     install(ContentNegotiation) {
@@ -39,9 +26,6 @@ fun main() {
       gzip()
     }
     routing {
-      get("/{...}") {
-        call.respondHtml(HttpStatusCode.OK, { index() })
-      }
       get(planetsPath) {
         call.respond(solarSystemPlanets)
       }
@@ -57,11 +41,12 @@ fun main() {
       get(launchersPath) {
         call.respond(launcherList)
       }
-      static {
-        resource("/scripts.js")
-      }
       static("/static") {
         resources()
+      }
+      static {
+        resource("/kotlin-react.js")
+        resource("/{...}", "index.html")
       }
     }
   }.start(wait = true)
